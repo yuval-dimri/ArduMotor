@@ -2,42 +2,28 @@
 #define ARDUMOTOR_H
 
 #include <Arduino.h>
-#include "Motor.h"           // Include the Motor abstract class
-#include "ComposedSensors.h" // Include the ComposedSensors class
+#include <memory>
+#include "Motor.h" // Include the Motor abstract class
+#include "ComposedSensors.h"
+#include "SensorType.h"
 
 class ArduMotor
 {
 public:
     // Constructor
-    explicit ArduMotor(Motor *motor) : motor(motor) {}
+    explicit ArduMotor(Motor &motor);
 
     // Function to add sensors
-    void addSensor(SensorType type, std::unique_ptr<Sensor> sensor)
-    {
-        composedSensors.addSensor(type, std::move(sensor));
-    }
+    void addSensor(sensor &sensor);
 
     // Motor control methods
-    void setSpeed(float speed)
-    {
-        motor->setSpeed(speed);
-    }
+    void motorGo(float speed);                     // -1 - 1
+    void motorGo(float speed, float acceleration); // -1 - 1, rot / s^2
 
-    void setDirection(bool direction)
-    {
-        motor->setDirection(direction);
-    }
-
-    void stopMotor()
-    {
-        motor->stop();
-    }
+    void stopMotor();
 
     // Delegate sensor reading to ComposedSensors
-    void readSensors()
-    {
-        composedSensors.readSensors();
-    }
+    void readSensors();
 
 private:
     Motor *motor;
