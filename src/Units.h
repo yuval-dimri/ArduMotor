@@ -3,52 +3,55 @@
 
 #include <Arduino.h>
 
-enum class RotarySpeedUnit
+enum class SpeedUnits
 {
     RPM,
     DEGREES_PER_SECOND,
-};
-
-enum class LinearSpeedUnit
-{
     METERS_PER_SECOND,
-    CM_PER_SECOND,
+    KILOMETERS_PER_HOUR,
+    MILES_PER_HOUR,
     FEET_PER_SECOND,
-    INCHES_PER_SECOND
+    KNOTS, // Nautical miles per hour
+    MACH   // Speed relative to the speed of sound ha ha ha
 };
 
-// Abstract Base Class
-class Speed
+enum class PositionUnits
+{
+    MM,
+    CM,
+    METER,
+    KILOMETER,
+    INCHE,
+    FEET,
+    MILE,
+};
+
+class AM_Units
 {
 public:
-    float getValue() const { return value; }
+    AM_SpeedUnit(float value, PositionUnits position_unit);
+    AM_SpeedUnit(float value, SpeedUnits speed_units);
 
 protected:
     float value;
 };
 
-// Derived Class for Rotary Speed
-class RotarySpeed : public Speed
+class AM_SpeedUnit
 {
 public:
-    RotarySpeed(float value, RotarySpeedUnit unit) : Speed(value), unit(unit) {}
+    AM_SpeedUnit(float value, SpeedUnit unit);
+    AM_
 
-    RotarySpeedUnit getUnit() const { return unit; }
-
-private:
-    RotarySpeedUnit unit;
+        protected : float value;
 };
 
-// Derived Class for Linear Speed
-class LinearSpeed : public Speed
+class AM_PositionUnit
 {
 public:
-    LinearSpeed(float value, LinearSpeedUnit unit) : Speed(value), unit(unit) {}
+    AM_SpeedUnit(float value, RotarySpeedUnit unit);
 
-    LinearSpeedUnit getUnit() const { return unit; }
-
-private:
-    LinearSpeedUnit unit;
+protected:
+    float value;
 };
 
 #endif // SPEEDUNITS_H
