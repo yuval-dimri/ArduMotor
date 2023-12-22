@@ -1,5 +1,23 @@
 {
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "__node_handle": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "__memory": "cpp",
+        "limits": "cpp",
+        "locale": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp"
     }
 }
